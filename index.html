@@ -225,5 +225,23 @@
     </div>
     <p class="copyright">© 2026 Kannan R S</p>
   </footer>
+
+  <script>
+    document.body.classList.add("js-enabled");
+
+    const revealTargets = document.querySelectorAll(".reveal, .reveal-delay");
+    const revealOnScroll = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    revealTargets.forEach((element) => revealOnScroll.observe(element));
+  </script>
 </body>
 </html>

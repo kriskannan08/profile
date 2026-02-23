@@ -55,6 +55,8 @@ a:hover {
   z-index: -2;
   border-radius: 50%;
   filter: blur(6px);
+  animation: drift 14s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 .bg-shape-one {
@@ -73,6 +75,8 @@ a:hover {
   top: 40%;
   background: linear-gradient(140deg, #e4ecf8, #c7d7ee);
   opacity: 0.25;
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
 }
 
 .site-header {
@@ -158,6 +162,7 @@ a:hover {
   font-size: 0.92rem;
   letter-spacing: 0.02em;
   border: 1px solid transparent;
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
 }
 
 .btn-primary {
@@ -168,6 +173,8 @@ a:hover {
 .btn-primary:hover {
   text-decoration: none;
   background: #243752;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 31, 53, 0.2);
 }
 
 .btn-secondary {
@@ -179,6 +186,7 @@ a:hover {
 .btn-secondary:hover {
   text-decoration: none;
   background: #f3f6fb;
+  transform: translateY(-2px);
 }
 
 .meta-list {
@@ -226,6 +234,7 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 14px;
   box-shadow: var(--shadow);
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
 }
 
 .timeline-item {
@@ -275,6 +284,13 @@ h2 {
   font-size: 0.87rem;
   font-weight: 500;
   letter-spacing: 0.015em;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  background: #eef4ff;
+  border-color: #c7d7ee;
 }
 
 .split-cards {
@@ -359,11 +375,44 @@ h2 {
 }
 
 .reveal {
-  animation: rise 650ms ease both;
+  opacity: 1;
+  transform: none;
 }
 
 .reveal-delay {
-  animation: rise 850ms ease both;
+  opacity: 1;
+  transform: none;
+}
+
+.js-enabled .reveal,
+.js-enabled .reveal-delay {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.js-enabled .reveal.is-visible,
+.js-enabled .reveal-delay.is-visible {
+  animation: rise 700ms cubic-bezier(0.2, 0.65, 0.2, 1) both;
+}
+
+.js-enabled .reveal-delay.is-visible {
+  animation-duration: 920ms;
+}
+
+#projects .project-card:hover,
+.timeline-item:hover,
+.panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 28px rgba(15, 31, 53, 0.12);
+  border-color: #c4d3e8;
+}
+
+.site-footer .footer-links a {
+  transition: background-color 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.site-footer .footer-links a:hover {
+  transform: translateY(-1px);
 }
 
 @keyframes rise {
@@ -374,6 +423,29 @@ h2 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(26px, -22px, 0) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js-enabled .reveal,
+  .js-enabled .reveal-delay {
+    opacity: 1;
+    transform: none;
   }
 }
 
