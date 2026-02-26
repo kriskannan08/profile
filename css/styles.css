@@ -326,14 +326,47 @@ h2 {
   gap: 0.72rem;
 }
 
-.project-card h3 {
+.project-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.project-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(15, 31, 53, 0.12);
+  flex-shrink: 0;
+}
+
+.project-title {
   font-size: 1.02rem;
 }
 
-.project-card p {
+.project-desc {
   color: var(--muted);
   flex: 1;
   font-size: 0.93rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.project-tags span {
+  border: 1px solid #cfdaeb;
+  background: #f6f9ff;
+  border-radius: 999px;
+  padding: 0.2rem 0.52rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3d526f;
 }
 
 .site-footer {
